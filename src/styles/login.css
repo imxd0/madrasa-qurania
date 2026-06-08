@@ -1,0 +1,387 @@
+/* ===== صفحة الدخول الاحترافية ===== */
+
+.login-page-full {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #0a3d21 0%, #1b5e20 40%, #2e7d32 70%, #0a3d21 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Tajawal', 'Cairo', 'Segoe UI', sans-serif;
+}
+
+/* خلفية زخرفية */
+.login-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* البطاقة الرئيسية */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 20px;
+  padding: 0;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(212, 175, 55, 0.3);
+  overflow: hidden;
+  animation: loginAppear 0.5s ease-out forwards;
+}
+
+@keyframes loginAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* رأس البطاقة */
+.login-card-header {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  padding: 40px 30px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.login-card-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.login-logo-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(212, 175, 55, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.15);
+}
+
+.login-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-logo-fallback {
+  font-size: 2.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-main-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-main-subtitle {
+  font-size: 1rem;
+  color: rgba(212, 175, 55, 0.9);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.login-welcome-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* رسالة الخطأ */
+.login-error-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 24px 0;
+  padding: 12px 16px;
+  background: #fff3f3;
+  border: 1px solid #f5c6cb;
+  border-right: 4px solid #dc3545;
+  border-radius: 8px;
+  color: #842029;
+  font-size: 0.9rem;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* شبكة اختيار الدور */
+.login-role-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 30px 24px 24px;
+}
+
+.login-role-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 16px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+  font-family: inherit;
+}
+
+.login-role-parent {
+  background: linear-gradient(145deg, #f0f9f1, #e8f5e9);
+  border-color: #c8e6c9;
+}
+
+.login-role-parent:hover {
+  background: linear-gradient(145deg, #e8f5e9, #c8e6c9);
+  border-color: #2e7d32;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.2);
+}
+
+.login-role-admin {
+  background: linear-gradient(145deg, #fffbf0, #fdf3d0);
+  border-color: #f0d060;
+}
+
+.login-role-admin:hover {
+  background: linear-gradient(145deg, #fdf3d0, #f0d060);
+  border-color: #c8a000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(200, 160, 0, 0.2);
+}
+
+.login-role-icon {
+  font-size: 2.2rem;
+}
+
+.login-role-label {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1b5e20;
+}
+
+.login-role-admin .login-role-label {
+  color: #a07800;
+}
+
+.login-role-desc {
+  font-size: 0.78rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* نموذج المشرف */
+.login-admin-form {
+  padding: 30px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-admin-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1b5e20;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e8f5e9;
+}
+
+.login-input-wrapper {
+  position: relative;
+}
+
+.login-password-input {
+  width: 100%;
+  padding: 14px 48px 14px 16px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #f9f9f9;
+  color: #333;
+  direction: rtl;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-password-input:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+  background: #fff;
+}
+
+.login-eye-btn {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.login-eye-btn:hover {
+  color: #333;
+}
+
+.login-admin-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.login-submit-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-submit-btn:hover {
+  background: linear-gradient(135deg, #0a3d21, #1b5e20);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.3);
+}
+
+.login-cancel-btn {
+  padding: 13px 20px;
+  background: transparent;
+  color: #666;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.login-cancel-btn:hover {
+  border-color: #999;
+  color: #333;
+}
+
+/* ذيل البطاقة */
+.login-card-footer {
+  text-align: center;
+  padding: 16px 24px 24px;
+  color: #999;
+  font-size: 0.85rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 4px;
+}
+
+/* ===== اللوحات ===== */
+@media (max-width: 768px) {
+  .login-page-full {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  .login-card {
+    max-width: 100%;
+  }
+  .login-card-header {
+    padding: 30px 20px 24px;
+  }
+  .login-main-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 480px) {
+  .login-card {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+  .login-card-header {
+    padding: 24px 16px 20px;
+  }
+  .login-logo-wrapper {
+    width: 64px;
+    height: 64px;
+  }
+  .login-main-title {
+    font-size: 1.2rem;
+  }
+  .login-main-subtitle {
+    font-size: 0.88rem;
+  }
+  .login-role-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 20px 16px;
+  }
+  .login-role-btn {
+    padding: 18px 10px;
+  }
+  .login-role-icon {
+    font-size: 1.8rem;
+  }
+  .login-role-label {
+    font-size: 0.95rem;
+  }
+  .login-role-desc {
+    font-size: 0.72rem;
+  }
+  .login-admin-form {
+    padding: 20px 16px;
+  }
+  .login-admin-actions {
+    flex-direction: column;
+  }
+  .login-cancel-btn {
+    width: 100%;
+  }
+}

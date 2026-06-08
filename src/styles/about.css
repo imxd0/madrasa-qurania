@@ -1,0 +1,371 @@
+/* تنسيقات صفحة من نحن (About Us) - مظهر احترافي فاخر */
+
+.page-header {
+  position: relative;
+  padding: 160px 0 80px;
+  background: linear-gradient(135deg, #09331f 0%, #0f5132 50%, #198754 100%);
+  color: var(--text-light);
+  text-align: center;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(var(--color-gold) 0.5px, transparent 0.5px);
+  background-size: 15px 15px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.page-header h1 {
+  font-size: 3.2rem;
+  font-family: var(--font-quranic);
+  margin-bottom: 20px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.8s ease;
+  position: relative;
+}
+
+.page-header p {
+  opacity: 0.95;
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+  animation: fadeInUp 1s ease;
+  position: relative;
+}
+
+.about-intro-section {
+  padding: 100px 0;
+  position: relative;
+  background-color: var(--bg-primary);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-family: var(--font-quranic);
+  font-size: 2.6rem;
+  color: var(--color-green-dark);
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+}
+
+[data-theme='dark'] .about-text h2 {
+  color: var(--color-gold);
+}
+
+.about-text h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-gold);
+  border-radius: var(--radius-full);
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 25px;
+}
+
+.about-img-box {
+  position: relative;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-img-box img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 35px rgba(15, 81, 50, 0.15);
+  border: 6px solid var(--bg-card);
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+[data-theme='dark'] .about-img-box img {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border-color: #1e2420;
+}
+
+.about-img-box img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 45px rgba(15, 81, 50, 0.25);
+}
+
+.about-img-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px dashed var(--color-gold);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* قسم الرؤية والرسالة والقيم */
+.vision-mission-section {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.vmv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.vmv-card {
+  text-align: center;
+  padding: 50px 35px;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.vmv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-color: var(--color-green-primary);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.vmv-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-green-light);
+}
+
+.vmv-card:hover::before {
+  opacity: 1;
+}
+
+.vmv-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-tertiary);
+  color: var(--color-green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  box-shadow: inset 0 0 10px rgba(25, 135, 84, 0.05);
+  transition: all var(--transition-normal);
+}
+
+[data-theme='dark'] .vmv-icon {
+  color: var(--color-gold);
+  background-color: #12281a;
+}
+
+.vmv-card:hover .vmv-icon {
+  background-color: var(--color-green-primary);
+  color: var(--text-light);
+  transform: rotateY(180deg);
+}
+
+[data-theme='dark'] .vmv-card:hover .vmv-icon {
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+}
+
+.vmv-card h3 {
+  font-size: 1.5rem;
+  color: var(--color-green-dark);
+  margin-bottom: 20px;
+  font-family: var(--font-arabic);
+}
+
+[data-theme='dark'] .vmv-card h3 {
+  color: var(--color-gold);
+}
+
+.vmv-card p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* قسم القيم الجوهرية للمدرسة */
+.values-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.value-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px 30px;
+  text-align: center;
+  transition: all var(--transition-normal);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.value-box:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+}
+
+[data-theme='dark'] .value-box:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.value-num {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--color-gold);
+  margin-bottom: 20px;
+  opacity: 0.8;
+  font-family: var(--font-arabic);
+  transition: transform var(--transition-fast);
+}
+
+.value-box:hover .value-num {
+  transform: scale(1.15);
+}
+
+.value-box h4 {
+  font-size: 1.3rem;
+  color: var(--color-green-dark);
+  margin-bottom: 15px;
+  font-family: var(--font-arabic);
+}
+
+[data-theme='dark'] .value-box h4 {
+  color: #fff;
+}
+
+.value-box p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== اللوحات ===== */
+@media (max-width: 992px) {
+  .page-header {
+    padding: 130px 0 60px;
+  }
+  .page-header h1 {
+    font-size: 2.4rem;
+  }
+  .page-header p {
+    font-size: 1.1rem;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-intro-section,
+  .vision-mission-section,
+  .values-section {
+    padding: 60px 0;
+  }
+  .about-text h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 110px 16px 50px;
+  }
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+  .page-header p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .about-intro-section,
+  .vision-mission-section,
+  .values-section {
+    padding: 40px 0;
+  }
+  .about-text h2 {
+    font-size: 1.6rem;
+  }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .vmv-card {
+    padding: 30px 20px;
+  }
+  .vmv-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .vmv-card h3 {
+    font-size: 1.2rem;
+  }
+  .vmv-grid {
+    gap: 16px;
+  }
+  .value-box {
+    padding: 28px 20px;
+  }
+  .value-num {
+    font-size: 2.2rem;
+  }
+  .value-box h4 {
+    font-size: 1.1rem;
+  }
+  .values-grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  .about-text h2 {
+    font-size: 1.3rem;
+  }
+}

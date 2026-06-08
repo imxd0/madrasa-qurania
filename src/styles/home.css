@@ -1,0 +1,458 @@
+/* تنسيقات الصفحة الرئيسية (Home Page) */
+
+/* قسم الترحيب (Hero Section) */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 81, 50, 0.95) 0%,
+      rgba(25, 135, 84, 0.85) 100%
+    ),
+    url("/Screenshot%202026-06-05%20155405.png") no-repeat center center/cover;
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 26, 17, 0.96) 0%,
+      rgba(15, 40, 25, 0.9) 100%
+    ),
+    url("/Screenshot%202026-06-05%20155405.png") no-repeat center center/cover;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  animation: fadeInUp 0.8s ease;
+}
+
+.hero-subtitle {
+  font-family: var(--font-quranic);
+  font-size: 1.8rem;
+  color: var(--color-gold);
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  font-family: var(--font-quranic);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 25px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-btn-secondary {
+  border: 2px solid var(--text-light);
+  color: var(--text-light);
+}
+
+.hero-btn-secondary:hover {
+  background-color: var(--text-light);
+  color: var(--color-green-dark);
+}
+
+/* قسم الإحصائيات (Stats Section) */
+.stats-section {
+  padding: 80px 0;
+  background-color: var(--bg-secondary);
+  position: relative;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 35px 25px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-card);
+  transition: all var(--transition-normal);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-tertiary);
+  color: var(--color-green-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  transition: all var(--transition-normal);
+}
+
+.stat-card:hover .stat-card-icon {
+  background-color: var(--color-green-primary);
+  color: var(--text-light);
+}
+
+.stat-number {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--color-green-dark);
+  margin-bottom: 5px;
+  font-family: var(--font-arabic);
+}
+
+[data-theme="dark"] .stat-number {
+  color: var(--color-gold);
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* قسم أهداف المدرسة */
+.goals-section {
+  padding: 100px 0;
+  background-color: var(--bg-primary);
+}
+
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.goal-card {
+  text-align: center;
+  padding: 30px;
+}
+
+.goal-icon-box {
+  width: 64px;
+  height: 64px;
+  background-color: var(--bg-tertiary);
+  color: var(--color-green-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.goal-card h3 {
+  font-size: 1.25rem;
+  color: var(--color-green-dark);
+  margin-bottom: 15px;
+  font-family: var(--font-arabic);
+}
+
+[data-theme="dark"] .goal-card h3 {
+  color: var(--color-gold);
+}
+
+.goal-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* قسم الأخبار والإعلانات */
+.news-section {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+}
+
+.news-tag {
+  background-color: var(--color-green-light);
+  color: var(--color-green-dark);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .news-tag {
+  background-color: var(--bg-tertiary);
+  color: var(--color-gold);
+}
+
+.news-date {
+  color: var(--text-muted);
+}
+
+.news-card-title {
+  font-size: 1.2rem;
+  color: var(--color-green-dark);
+  margin-bottom: 12px;
+  font-family: var(--font-arabic);
+}
+
+[data-theme="dark"] .news-card-title {
+  color: var(--color-gold);
+}
+
+.news-card-content {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* قسم آراء أولياء الأمور والطلاب */
+.testimonials-section {
+  padding: 100px 0;
+  background-color: var(--bg-primary);
+  position: relative;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quote-icon {
+  color: var(--color-gold);
+  opacity: 0.3;
+  margin-bottom: 15px;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 25px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 15px;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--color-green-dark);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.author-info h4 {
+  font-size: 1rem;
+  color: var(--color-green-dark);
+  margin-bottom: 2px;
+}
+
+[data-theme="dark"] .author-info h4 {
+  color: var(--color-gold);
+}
+
+.author-info span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 4px;
+  color: var(--color-gold);
+  margin-bottom: 10px;
+}
+
+/* قسم الإعلانات */
+.announcements-section {
+  padding: 60px 0;
+  background-color: var(--bg-secondary);
+}
+
+/* قسم الآية */
+.verse-section {
+  background-color: var(--bg-tertiary);
+  padding: 60px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ===== اللوحات (Tablets) ===== */
+@media (max-width: 992px) {
+  .hero {
+    min-height: 80vh;
+    padding: 100px 20px 60px;
+  }
+  .hero-title {
+    font-size: 2.6rem;
+  }
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+  .hero-description {
+    font-size: 1.1rem;
+  }
+  .stats-section,
+  .goals-section,
+  .news-section,
+  .testimonials-section,
+  .announcements-section,
+  .verse-section {
+    padding: 60px 0;
+  }
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+    padding: 80px 16px 50px;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .stat-card {
+    padding: 24px 20px;
+  }
+  .stat-card-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .stat-number {
+    font-size: 2rem;
+  }
+  .stat-label {
+    font-size: 0.95rem;
+  }
+  .goals-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .goal-card {
+    padding: 20px;
+  }
+  .goal-icon-box {
+    width: 52px;
+    height: 52px;
+  }
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .stats-section,
+  .goals-section,
+  .news-section,
+  .testimonials-section,
+  .announcements-section,
+  .verse-section {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 65vh;
+    padding: 70px 12px 40px;
+  }
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  .stat-number {
+    font-size: 1.7rem;
+  }
+}

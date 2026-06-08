@@ -1,0 +1,11 @@
+{
+  "appId": "com.madrasa.qurania",
+  "appName": "المدرسة القرآنية",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

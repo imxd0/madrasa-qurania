@@ -1,0 +1,292 @@
+/* تنسيقات صفحة نشاطاتنا (Activities Page) */
+
+.activities-section {
+  padding: 80px 0;
+}
+
+/* تبويبات التصفية للأنشطة والمعرض */
+.activity-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.activity-tab {
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.95rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.activity-tab:hover, .activity-tab.active {
+  background-color: var(--color-green-primary);
+  color: var(--text-light);
+  border-color: var(--color-green-primary);
+  box-shadow: 0 4px 10px rgba(25, 135, 84, 0.2);
+}
+
+[data-theme='dark'] .activity-tab:hover, [data-theme='dark'] .activity-tab.active {
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+/* شبكة الأنشطة والفعاليات */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.event-card-img-box {
+  height: 180px;
+  overflow: hidden;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+}
+
+.event-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.event-card:hover .event-card-img {
+  transform: scale(1.05);
+}
+
+.event-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.event-card-date {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.event-card-title {
+  font-size: 1.15rem;
+  color: var(--color-green-dark);
+  margin-bottom: 12px;
+  font-family: var(--font-arabic);
+}
+
+[data-theme='dark'] .event-card-title {
+  color: var(--color-gold);
+}
+
+.event-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* قسم معرض الصور الاحترافي */
+.gallery-section-title {
+  border-top: 1px solid var(--border-color);
+  padding-top: 60px;
+  margin-top: 60px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 220px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.gallery-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 81, 50, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  color: var(--text-light);
+  padding: 20px;
+  text-align: center;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+.gallery-item:hover .gallery-item-img {
+  transform: scale(1.1);
+}
+
+.gallery-zoom-icon {
+  margin-bottom: 10px;
+  color: var(--color-gold);
+  animation: float 3s ease-in-out infinite;
+}
+
+.gallery-item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* نافذة تكبير الصورة (Lightbox popup) */
+.lightbox-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--radius-sm);
+  border: 4px solid var(--text-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  color: var(--text-light);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.lightbox-caption {
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== اللوحات ===== */
+@media (max-width: 992px) {
+  .activities-section {
+    padding: 60px 0;
+  }
+  .events-grid {
+    margin-bottom: 60px;
+  }
+  .gallery-section-title {
+    padding-top: 40px;
+    margin-top: 40px;
+  }
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+  .activities-section {
+    padding: 40px 0;
+  }
+  .activity-tabs {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .activity-tab {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .event-card-img-box {
+    height: 160px;
+  }
+  .event-card-body {
+    padding: 16px;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .gallery-item {
+    height: 180px;
+  }
+  .gallery-section-title {
+    padding-top: 30px;
+    margin-top: 30px;
+  }
+  .lightbox-content {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .activity-tab {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+  .event-card-img-box {
+    height: 140px;
+  }
+  .gallery-item {
+    height: 150px;
+  }
+}

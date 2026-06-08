@@ -1,0 +1,187 @@
+/* تنسيقات التذييل (Footer) */
+
+.footer {
+  background-color: var(--color-green-dark);
+  color: var(--text-light);
+  padding: 60px 0 20px;
+  position: relative;
+  overflow: hidden;
+  border-top: 5px solid var(--color-gold);
+}
+
+[data-theme='dark'] .footer {
+  background-color: #081a11;
+  border-top-color: var(--color-gold);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-info .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--color-gold);
+}
+
+.footer-info p {
+  opacity: 0.85;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 380px;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  font-family: var(--font-arabic);
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-gold);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  opacity: 0.85;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a::before {
+  content: '✦';
+  color: var(--color-gold);
+  font-size: 0.7rem;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--color-gold);
+  padding-right: 5px;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.footer-contact-item svg {
+  color: var(--color-gold);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.footer-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  transition: all var(--transition-fast);
+}
+
+.footer-social-btn:hover {
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== اللوحات ===== */
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .footer-info {
+    grid-column: 1 / -1;
+  }
+  .footer-info p {
+    max-width: 100%;
+  }
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-info {
+    grid-column: auto;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 0 15px;
+  }
+  .footer-logo {
+    font-size: 1.2rem !important;
+  }
+  .footer-section h3 {
+    font-size: 1.05rem;
+  }
+}

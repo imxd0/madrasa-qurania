@@ -1,0 +1,219 @@
+/* تنسيقات شريط التنقل */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 1000;
+  transition: all var(--transition-normal);
+}
+
+[data-theme='dark'] .header {
+  background-color: rgba(18, 22, 25, 0.85);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-scrolled {
+  box-shadow: var(--shadow-md);
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 64px;
+}
+
+[data-theme='dark'] .header-scrolled {
+  background-color: rgba(18, 22, 25, 0.95);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--color-green-dark);
+  font-family: var(--font-arabic);
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .logo {
+  color: var(--color-gold);
+}
+
+.logo-icon {
+  color: var(--color-gold);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-link {
+  font-weight: 600;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 8px 4px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-green-primary);
+}
+
+[data-theme='dark'] .nav-link:hover, [data-theme='dark'] .nav-link.active {
+  color: var(--color-gold);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-green-primary);
+  transition: width var(--transition-normal);
+}
+
+[data-theme='dark'] .nav-link::after {
+  background-color: var(--color-gold);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-toggle-btn {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+/* شارة المشرف */
+.nav-admin-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #d4af37, #c8a000);
+  color: #1b3a0a;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
+/* زر تسجيل الخروج */
+.nav-logout-btn {
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.nav-logout-btn:hover {
+  background-color: #fff0f0;
+  color: #dc3545;
+  border-color: #f5c6cb;
+}
+
+[data-theme='dark'] .nav-logout-btn:hover {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: #f77;
+  border-color: rgba(220, 53, 69, 0.3);
+}
+
+/* ===== الجوال واللوحيات ===== */
+@media (max-width: 1024px) {
+  .nav-menu {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 5px;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    pointer-events: none;
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-toggle-btn {
+    display: flex;
+  }
+
+  .header-scrolled .nav-menu {
+    top: 64px;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 12px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    gap: 6px;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+}

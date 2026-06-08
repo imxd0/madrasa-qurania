@@ -1,0 +1,14 @@
+import Database from 'better-sqlite3';
+const db = new Database('data/madrasa.db');
+console.log('Departments:', db.prepare('SELECT COUNT(*) as c FROM departments').get().c);
+console.log('Students:', db.prepare('SELECT COUNT(*) as c FROM students').get().c);
+console.log('Announcements:', db.prepare('SELECT COUNT(*) as c FROM announcements').get().c);
+console.log('Activities:', db.prepare('SELECT COUNT(*) as c FROM activities').get().c);
+console.log('Teachers:', db.prepare('SELECT COUNT(*) as c FROM teachers').get().c);
+console.log('Users:', db.prepare('SELECT id, username, role FROM users').all());
+console.log('Sessions:', db.prepare('SELECT COUNT(*) as c FROM sessions').get().c);
+console.log('Contact messages:', db.prepare('SELECT COUNT(*) as c FROM contact_messages').get().c);
+const sampleHash = db.prepare('SELECT password_hash FROM users LIMIT 1').get();
+console.log('Hash starts with $2 (bcrypt):', sampleHash.password_hash.startsWith('$2'));
+console.log('Hash length:', sampleHash.password_hash.length);
+db.close();

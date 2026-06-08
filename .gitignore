@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Logs
+logs
+*.log
+
+# Database & sensitive data
+data/
+uploads/
+backups/
+
+# Android build
+android/.gradle/
+android/app/build/
+android/build/
+android/capacitor-android/build/
+android/capacitor-community-sqlite/build/
+android/capacitor-cordova-android-plugins/build/
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+Thumbs.db

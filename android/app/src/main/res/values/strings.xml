@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">المدرسة القرآنية</string>
+    <string name="title_activity_main">المدرسة القرآنية</string>
+    <string name="package_name">com.madrasa.qurania</string>
+    <string name="custom_url_scheme">com.madrasa.qurania</string>
+</resources>

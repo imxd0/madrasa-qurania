@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- خلفية دائرية خضراء داكنة -->
+  <circle cx="50" cy="50" r="48" fill="#0F5132" />
+  
+  <!-- إطار ذهبي داخلي -->
+  <circle cx="50" cy="50" r="44" fill="none" stroke="#D4AF37" stroke-width="2" />
+  
+  <!-- نجمة ثمانية إسلامية في الوسط خلفية خفيفة -->
+  <path d="M 50 15 L 60 30 L 75 30 L 70 45 L 85 50 L 70 55 L 75 70 L 60 70 L 50 85 L 40 70 L 25 70 L 30 55 L 15 50 L 30 45 L 25 30 L 40 30 Z" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.3" />
+  
+  <!-- كتاب مفتوح (القرآن الكريم) -->
+  <!-- الحامل الخشبي (الرحل) -->
+  <path d="M 32 68 L 50 54 L 68 68 L 60 72 L 50 62 L 40 72 Z" fill="#D4AF37" />
+  
+  <!-- صفحات الكتاب اليسرى واليمنى -->
+  <path d="M 50 52 C 45 42, 30 40, 24 48 L 24 34 C 30 26, 45 28, 50 38 Z" fill="#FFFFFF" stroke="#198754" stroke-width="1" />
+  <path d="M 50 52 C 55 42, 70 40, 76 48 L 76 34 C 70 26, 55 28, 50 38 Z" fill="#FFFFFF" stroke="#198754" stroke-width="1" />
+  
+  <!-- خطوط الكتابة المحاكاة -->
+  <line x1="28" y1="38" x2="42" y2="38" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="28" y1="42" x2="44" y2="42" stroke="#198754" stroke-width="1" stroke-linecap="round" />
+  <line x1="30" y1="46" x2="42" y2="46" stroke="#198754" stroke-width="1" stroke-linecap="round" />
+  
+  <line x1="72" y1="38" x2="58" y2="38" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="72" y1="42" x2="56" y2="42" stroke="#198754" stroke-width="1" stroke-linecap="round" />
+  <line x1="70" y1="46" x2="58" y2="46" stroke="#198754" stroke-width="1" stroke-linecap="round" />
+
+  <!-- هلال ذهبي في القمة -->
+  <path d="M 46 16 A 6 6 0 1 0 54 16 A 5 5 0 1 1 46 16 Z" fill="#D4AF37" />
+</svg>

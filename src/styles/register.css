@@ -1,0 +1,185 @@
+/* تنسيقات صفحة التسجيل (Registration Page) */
+
+.register-section {
+  padding: 80px 0;
+}
+
+.register-container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.register-form-card {
+  padding: 40px;
+}
+
+.register-form-card h2 {
+  font-family: var(--font-arabic);
+  font-size: 1.8rem;
+  color: var(--color-green-dark);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+[data-theme='dark'] .register-form-card h2 {
+  color: var(--color-gold);
+}
+
+.register-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 35px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-group label span {
+  color: #dc3545;
+}
+
+.form-control {
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.form-control:focus {
+  border-color: var(--color-green-primary);
+  background-color: var(--bg-card);
+  box-shadow: 0 0 0 3px var(--color-green-light);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.register-submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+/* بطاقة نجاح عملية التسجيل */
+.register-success-card {
+  text-align: center;
+  padding: 50px 40px;
+  animation: scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.success-icon-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-green-light);
+  color: var(--color-green-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  box-shadow: 0 10px 20px rgba(25, 135, 84, 0.15);
+}
+
+.register-success-card h2 {
+  color: var(--color-green-primary);
+  font-size: 2rem;
+  font-family: var(--font-arabic);
+  margin-bottom: 15px;
+}
+
+.register-success-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== اللوحات ===== */
+@media (max-width: 768px) {
+  .register-section {
+    padding: 40px 0;
+  }
+  .register-form-card {
+    padding: 28px;
+  }
+  .register-form-card h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .register-form-card {
+    padding: 20px;
+  }
+  .register-success-card {
+    padding: 30px 20px;
+  }
+  .success-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  .register-success-card h2 {
+    font-size: 1.5rem;
+  }
+  .register-success-card p {
+    font-size: 0.95rem;
+  }
+  .success-actions {
+    flex-direction: column;
+  }
+  .success-actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,91 @@
+.offline-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.offline-indicator.online {
+  background: rgba(34, 139, 34, 0.9);
+  color: white;
+}
+
+.offline-indicator.offline {
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+}
+
+.sync-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.sync-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+.sync-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 10001;
+  animation: slideDown 0.3s ease;
+}
+
+.sync-banner.online {
+  background: rgba(34, 139, 34, 0.95);
+  color: white;
+}
+
+.sync-banner.offline {
+  background: rgba(220, 53, 69, 0.95);
+  color: white;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .offline-indicator {
+    bottom: 10px;
+    left: 10px;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
