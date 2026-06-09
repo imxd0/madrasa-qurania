@@ -1,0 +1,10 @@
+node_modules
+dist
+android
+data
+uploads
+backups
+.git
+*.apk
+*.md
+*.txt
