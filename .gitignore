@@ -11,9 +11,10 @@ logs
 *.log
 
 # Database & sensitive data
-data/
-uploads/
-backups/
+/data/
+/uploads/
+/backups/
+!/src/data/
 
 # Android build
 android/.gradle/
