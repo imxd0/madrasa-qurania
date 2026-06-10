@@ -162,7 +162,7 @@ async function setSessionCookie(res, session) {
     user_id: session.userId || null, expires_at: expiresAt,
   });
   res.setHeader('Set-Cookie',
-    `${SESSION_COOKIE}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${Math.floor(SESSION_TTL_MS / 1000)}`,
+    `${SESSION_COOKIE}=${token}; HttpOnly; SameSite=None; Secure; Path=/; Max-Age=${Math.floor(SESSION_TTL_MS / 1000)}`,
   );
   return token;
 }
@@ -170,7 +170,7 @@ async function setSessionCookie(res, session) {
 async function clearSessionCookie(req, res) {
   const token = parseCookies(req)[SESSION_COOKIE];
   if (token) await supabase.from('sessions').delete().eq('token', token);
-  res.setHeader('Set-Cookie', `${SESSION_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0`);
+  res.setHeader('Set-Cookie', `${SESSION_COOKIE}=; HttpOnly; SameSite=None; Secure; Path=/; Max-Age=0`);
 }
 
 async function getSession(req) {
@@ -352,6 +352,28 @@ export async function handleApi(req, res) {
       return;
     }
 
+    if (req.method === 'PATCH' && url.pathname.startsWith('/api/departments/')) {
+      if (!(await requireAdmin(req, res))) return;
+      const id = decodeURIComponent(url.pathname.split('/').pop());
+      const patch = await parseJsonBody(req);
+      const updates = {};
+      if (patch.name != null) updates.name = requireString(patch.name, 'اسم القسم');
+      if (patch.teacher != null) updates.teacher = optionalString(patch.teacher, 200);
+      if (patch.capacity != null) updates.capacity = Number(patch.capacity) || 0;
+      if (patch.level != null) updates.level = optionalString(patch.level, 100);
+      if (patch.schedule != null) updates.schedule = patch.schedule ? JSON.stringify(patch.schedule) : null;
+      if (patch.description != null) updates.description = optionalString(patch.description, 2000);
+      if (patch.image != null) updates.image = optionalString(patch.image, 500);
+      if (Object.keys(updates).length > 0) {
+        await supabase.from('departments').update(updates).eq('id', id);
+      }
+      const { data } = await supabase.from('departments').select('*').eq('id', id).single();
+      const { data: students } = await supabase.from('students').select('department_id');
+      const count = (students || []).filter(s => s.department_id === id).length;
+      sendJson(res, 200, { ...data, studentsCount: count, schedule: data.schedule ? (typeof data.schedule === 'string' ? JSON.parse(data.schedule) : data.schedule) : null });
+      return;
+    }
+
     if (req.method === 'DELETE' && url.pathname.startsWith('/api/departments/')) {
       if (!(await requireAdmin(req, res))) return;
       const id = decodeURIComponent(url.pathname.split('/').pop());
@@ -381,7 +403,7 @@ export async function handleApi(req, res) {
         department_id: optionalString(body.departmentId, 100),
         department_name: optionalString(body.departmentName, 200),
         status: 'approved', registration_date: new Date().toISOString().split('T')[0],
-        history: body.history || [],
+        history: Array.isArray(body.history) ? JSON.stringify(body.history) : (body.history || '[]'),
       };
       const { error } = await supabase.from('students').insert(student);
       if (error) throw error;
@@ -402,7 +424,7 @@ export async function handleApi(req, res) {
       if (patch.departmentId != null) updates.department_id = optionalString(patch.departmentId, 100);
       if (patch.departmentName != null) updates.department_name = optionalString(patch.departmentName, 200);
       if (patch.status != null) updates.status = optionalString(patch.status, 50);
-      if (patch.history != null) updates.history = patch.history;
+      if (patch.history != null) updates.history = Array.isArray(patch.history) ? JSON.stringify(patch.history) : patch.history;
       if (Object.keys(updates).length > 0) {
         await supabase.from('students').update(updates).eq('id', id);
       }
@@ -452,7 +474,7 @@ export async function handleApi(req, res) {
         id: `ann-${randomUUID().slice(0, 8)}`, title: requireString(body.title, 'العنوان'),
         tag: optionalString(body.tag, 50) || 'إعلان', content: optionalString(body.content, 5000),
         date: new Date().toISOString().split('T')[0],
-        images: Array.isArray(body.images) ? body.images.filter(u => typeof u === 'string').slice(0, 20) : [],
+        images: Array.isArray(body.images) ? JSON.stringify(body.images.filter(u => typeof u === 'string').slice(0, 20)) : '[]',
       };
       await supabase.from('announcements').insert(ann);
       sendJson(res, 201, ann);
@@ -475,10 +497,25 @@ export async function handleApi(req, res) {
       if (patch.title != null) updates.title = requireString(patch.title, 'العنوان');
       if (patch.tag != null) updates.tag = optionalString(patch.tag, 50);
       if (patch.content != null) updates.content = optionalString(patch.content, 5000);
-      if (patch.images != null) updates.images = Array.isArray(patch.images) ? patch.images.filter(u => typeof u === 'string').slice(0, 20) : [];
+      if (patch.images != null) updates.images = Array.isArray(patch.images) ? JSON.stringify(patch.images.filter(u => typeof u === 'string').slice(0, 20)) : patch.images;
       if (Object.keys(updates).length > 0) await supabase.from('announcements').update(updates).eq('id', id);
       const { data } = await supabase.from('announcements').select('*').eq('id', id).single();
       sendJson(res, 200, rowToAnnouncement(data));
+      return;
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/contact') {
+      const body = await parseJsonBody(req);
+      const msg = {
+        id: body.id || `msg-${randomUUID().slice(0, 8)}`,
+        name: optionalString(body.name, 200) || 'مجهول',
+        email: optionalString(body.email, 200),
+        phone: optionalString(body.phone, 50),
+        subject: optionalString(body.subject, 200),
+        message: optionalString(body.message, 5000),
+        date: body.date || new Date().toISOString(),
+      };
+      sendJson(res, 201, { ok: true, id: msg.id });
       return;
     }
 
@@ -496,7 +533,7 @@ export async function handleApi(req, res) {
         description: optionalString(body.description, 5000),
         date: optionalString(body.date, 50) || new Date().toISOString().split('T')[0],
         type: optionalString(body.type, 50) || 'نشاط',
-        images: Array.isArray(body.images) ? body.images.filter(u => typeof u === 'string').slice(0, 20) : [],
+        images: Array.isArray(body.images) ? JSON.stringify(body.images.filter(u => typeof u === 'string').slice(0, 20)) : '[]',
       };
       await supabase.from('activities').insert(act);
       sendJson(res, 201, act);
@@ -512,7 +549,7 @@ export async function handleApi(req, res) {
       if (patch.description != null) updates.description = optionalString(patch.description, 5000);
       if (patch.date != null) updates.date = optionalString(patch.date, 50);
       if (patch.type != null) updates.type = optionalString(patch.type, 50);
-      if (patch.images != null) updates.images = Array.isArray(patch.images) ? patch.images.slice(0, 20) : [];
+      if (patch.images != null) updates.images = Array.isArray(patch.images) ? JSON.stringify(patch.images.slice(0, 20)) : patch.images;
       if (Object.keys(updates).length > 0) await supabase.from('activities').update(updates).eq('id', id);
       const { data } = await supabase.from('activities').select('*').eq('id', id).single();
       sendJson(res, 200, rowToActivity(data));
@@ -567,9 +604,10 @@ async function serveStaticProd(req, res) {
 const server = createServer(async (req, res) => {
   const origin = req.headers.origin || '*';
   res.setHeader('Access-Control-Allow-Origin', origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Cookie, X-Requested-With');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Expose-Headers', 'Set-Cookie');
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
   try {
     if (req.url.startsWith('/api/')) { await handleApi(req, res); return; }
