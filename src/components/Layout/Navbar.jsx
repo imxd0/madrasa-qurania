@@ -30,24 +30,26 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const navLinks = isAdmin
-    ? [
-        { name: 'الإحصائيات العامة', path: '/dashboard' },
-        { name: 'إدارة الأقسام', path: '/dashboard/departments' },
-        { name: 'إدارة الأنشطة', path: '/dashboard/activities' },
-      ]
-    : [
-        { name: 'الرئيسية', path: '/' },
-        { name: 'من نحن', path: '/about' },
-        { name: 'الأقسام والحلقات', path: '/departments' },
-        { name: 'أوقات الدراسة', path: '/schedule' },
-        { name: 'نشاطاتنا', path: '/activities' },
-      ];
+  const publicLinks = [
+    { name: 'الرئيسية', path: '/' },
+    { name: 'من نحن', path: '/about' },
+    { name: 'الأقسام والحلقات', path: '/departments' },
+    { name: 'أوقات الدراسة', path: '/schedule' },
+    { name: 'نشاطاتنا', path: '/activities' },
+  ];
+
+  const adminLinks = [
+    { name: 'لوحة التحكم', path: '/dashboard' },
+    { name: 'إدارة الأقسام', path: '/dashboard/departments' },
+    { name: 'إدارة الأنشطة', path: '/dashboard/activities' },
+  ];
+
+  const navLinks = isAdmin ? [...adminLinks, ...publicLinks] : publicLinks;
 
   return (
     <header className={`header ${scrolled ? 'header-scrolled' : ''}`}>
       <div className="container navbar-container">
-        <NavLink to={isAdmin ? '/dashboard' : '/'} className="logo" id="navbar-logo-link">
+        <NavLink to="/" className="logo" id="navbar-logo-link">
           <span className="logo-icon"><BookOpen className="w-8 h-8 text-amber-500" /></span>
           <span>المدرسة القرآنية</span>
         </NavLink>

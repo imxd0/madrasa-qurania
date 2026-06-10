@@ -31,13 +31,9 @@ const ScrollToTop = () => {
 };
 
 const SiteLayout = () => {
-  const { isAdmin, isLoading } = useAuth();
+  const { isLoading } = useAuth();
 
   if (isLoading) return null;
-
-  if (isAdmin) {
-    return <Navigate to="/dashboard" replace />;
-  }
 
   return (
     <>
@@ -106,8 +102,7 @@ function App() {
             <Route path="/departments" element={<Departments />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/activities" element={<Activities />} />
-            <Route path="/register" element={<Navigate to="/login" replace />} />
-            <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
           </Route>
 
           {/* صفحة الدخول — متاحة دائماً */}
