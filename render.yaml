@@ -7,3 +7,7 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: SUPABASE_URL
+        value: https://wxixzhyrtfgbnzyuxuei.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4aXh6aHlydGZnYm56eXV4dWVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTE5NDMsImV4cCI6MjA5NjY2Nzk0M30.AMrP-pj9ewBW5IV8CmIlOEM_xn_38ITqw9pFzxxSrZI
