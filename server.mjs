@@ -736,11 +736,12 @@ export async function handleApi(req, res) {
       const departmentsCount = db.prepare('SELECT COUNT(*) as c FROM departments').get().c;
       const activitiesCount = db.prepare('SELECT COUNT(*) as c FROM activities').get().c;
       const allStudents = db.prepare(
-        'SELECT id, full_name, age, department_name, registration_date, status FROM students ORDER BY registration_date DESC',
+        'SELECT id, full_name, age, phone, department_name, registration_date, status FROM students ORDER BY registration_date DESC',
       ).all().map((s) => ({
         id: s.id,
         fullName: s.full_name,
         age: s.age,
+        phone: s.phone,
         departmentName: s.department_name,
         registrationDate: s.registration_date,
         status: s.status,

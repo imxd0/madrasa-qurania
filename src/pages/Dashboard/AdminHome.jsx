@@ -86,6 +86,7 @@ const AdminHome = () => {
                 <th>اسم الطالب</th>
                 <th>العمر</th>
                 <th>القسم</th>
+                <th>الهاتف</th>
                 <th>تاريخ التسجيل</th>
               </tr>
             </thead>
@@ -96,12 +97,13 @@ const AdminHome = () => {
                     <td><strong>{student.fullName}</strong></td>
                     <td>{student.age} سنة</td>
                     <td>{student.departmentName || '—'}</td>
+                    <td dir="ltr">{student.phone || '—'}</td>
                     <td>{student.registrationDate || '—'}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)' }}>
+                  <td colSpan="5" style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)' }}>
                     لا يوجد طلاب مسجلون في الوقت الحالي.
                   </td>
                 </tr>
