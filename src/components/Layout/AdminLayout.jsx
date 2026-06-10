@@ -1,8 +1,17 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import { BarChart3, FolderKanban, CalendarCheck, Globe, Info, Clock, Activity } from 'lucide-react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { BarChart3, FolderKanban, CalendarCheck, Globe, Info, Clock, Activity, LogOut } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/admin.css';
 
 const AdminLayout = () => {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   const adminLinks = [
     { name: 'الإحصائيات العامة', path: '/', icon: <BarChart3 className="w-5 h-5" />, end: true },
     { name: 'إدارة الأقسام', path: '/departments', icon: <FolderKanban className="w-5 h-5" /> },
@@ -50,6 +59,12 @@ const AdminLayout = () => {
             </div>
           ))}
         </nav>
+        <div className="sidebar-footer" style={{ padding: '16px', borderTop: '1px solid var(--border-light)' }}>
+          <button onClick={handleLogout} className="btn btn-secondary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <LogOut className="w-4 h-4" />
+            <span>تسجيل الخروج</span>
+          </button>
+        </div>
       </aside>
 
       <main className="dashboard-content">

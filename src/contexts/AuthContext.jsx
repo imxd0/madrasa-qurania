@@ -1,56 +1,50 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { api } from '../services/api';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [role, setRole] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    let mounted = true;
-
-    api.session()
-      .then((session) => {
-        if (!mounted) return;
-        setIsAuthenticated(session.isAuthenticated);
-        setIsAdmin(session.isAdmin);
-        setRole(session.role);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setIsAuthenticated(false);
-        setIsAdmin(false);
-        setRole('');
-      })
-      .finally(() => {
-        if (mounted) setIsLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
+  const checkSession = useCallback(async () => {
+    try {
+      const session = await api.session();
+      if (session.isAuthenticated) {
+        setIsAuthenticated(true);
+        localStorage.setItem('madrasa_auth', 'true');
+        return true;
+      }
+    } catch {}
+    setIsAuthenticated(false);
+    localStorage.removeItem('madrasa_auth');
+    return false;
   }, []);
 
-  const login = async (selectedRole, password = '') => {
-    const session = await api.login(selectedRole, password);
+  useEffect(() => {
+    const saved = localStorage.getItem('madrasa_auth');
+    if (saved === 'true') {
+      checkSession().finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
+    }
+  }, [checkSession]);
+
+  const login = async (password) => {
+    const session = await api.login('admin', password);
     setIsAuthenticated(true);
-    setIsAdmin(session.isAdmin);
-    setRole(session.role);
+    localStorage.setItem('madrasa_auth', 'true');
     return session;
   };
 
   const logout = async () => {
     await api.logout().catch(() => {});
     setIsAuthenticated(false);
-    setIsAdmin(false);
-    setRole('');
+    localStorage.removeItem('madrasa_auth');
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isAdmin, role, login, logout, isLoading }}>
+    <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

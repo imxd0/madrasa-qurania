@@ -429,7 +429,12 @@ function getSession(req) {
 }
 
 function requireAdmin(req, res) {
-  return { role: 'admin', isAdmin: true };
+  const session = getSession(req);
+  if (!session?.isAdmin) {
+    sendJson(res, 401, { error: 'unauthorized' });
+    return null;
+  }
+  return session;
 }
 
 function publicStudent(s) {
