@@ -56,6 +56,23 @@ const ManageDepartments = () => {
     } catch { setError('فشل حذف القسم'); }
   };
 
+  const handlePhoneLookup = (phone) => {
+    setNewStudent((p) => ({ ...p, phone }));
+    if (phone.trim().length >= 5) {
+      const existing = students.find((s) => s.phone && s.phone.trim() === phone.trim());
+      if (existing) {
+        setNewStudent((p) => ({
+          ...p,
+          phone,
+          fullName: existing.fullName || p.fullName,
+          age: existing.age || p.age,
+          academicLevel: existing.academicLevel || p.academicLevel,
+          address: existing.address || p.address,
+        }));
+      }
+    }
+  };
+
   const handleAddStudent = async (e) => {
     e.preventDefault();
     try {
@@ -166,7 +183,7 @@ const ManageDepartments = () => {
               </div>
               <div className="admin-input-group">
                 <label>رقم الهاتف <span>*</span></label>
-                <input type="tel" value={newStudent.phone} onChange={(e) => setNewStudent((p) => ({ ...p, phone: e.target.value }))} required />
+                <input type="tel" value={newStudent.phone} onChange={(e) => handlePhoneLookup(e.target.value)} required />
               </div>
               <div className="admin-input-group">
                 <label>المستوى الدراسي <span>*</span></label>
@@ -200,7 +217,7 @@ const ManageDepartments = () => {
                     <div className="student-avatar">{stud.fullName?.charAt(0) || '?'}</div>
                     <div className="student-name-details">
                       <h4>{stud.fullName}</h4>
-                      <span>العمر: {stud.age} سنة | المستوى: {stud.academicLevel}</span>
+                      <span>العمر: {stud.age} سنة | المستوى: {stud.academicLevel} | الهاتف: {stud.phone || '—'}</span>
                     </div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
