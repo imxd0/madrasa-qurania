@@ -51,6 +51,15 @@
   overflow-y: auto;
 }
 
+.sidebar-section-label {
+  padding: 6px 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .sidebar-item a {
   display: flex;
   align-items: center;

@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, BookOpen, LogOut } from 'lucide-react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Menu, X, BookOpen } from 'lucide-react';
 import DarkModeToggle from '../UI/DarkModeToggle';
-import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const { isAdmin, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,31 +17,17 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // إغلاق القائمة عند تغيير الصفحة
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  const publicLinks = [
-    { name: 'الرئيسية', path: '/' },
-    { name: 'من نحن', path: '/about' },
-    { name: 'الأقسام والحلقات', path: '/departments' },
-    { name: 'أوقات الدراسة', path: '/schedule' },
-    { name: 'نشاطاتنا', path: '/activities' },
+  const navLinks = [
+    { name: 'لوحة التحكم', path: '/' },
+    { name: 'من نحن', path: '/site/about' },
+    { name: 'الأقسام والحلقات', path: '/site/departments' },
+    { name: 'أوقات الدراسة', path: '/site/schedule' },
+    { name: 'نشاطاتنا', path: '/site/activities' },
   ];
-
-  const adminLinks = [
-    { name: 'لوحة التحكم', path: '/dashboard' },
-    { name: 'إدارة الأقسام', path: '/dashboard/departments' },
-    { name: 'إدارة الأنشطة', path: '/dashboard/activities' },
-  ];
-
-  const navLinks = isAdmin ? [...adminLinks, ...publicLinks] : publicLinks;
 
   return (
     <header className={`header ${scrolled ? 'header-scrolled' : ''}`}>
@@ -72,18 +55,6 @@ const Navbar = () => {
 
         <div className="nav-actions">
           <DarkModeToggle />
-          {isAdmin && (
-            <span className="nav-admin-badge" title="أنت مسجل كمشرف">مشرف</span>
-          )}
-          <button
-            onClick={handleLogout}
-            className="btn-icon nav-logout-btn"
-            aria-label="تسجيل الخروج"
-            title="تسجيل الخروج"
-            id="navbar-logout-btn"
-          >
-            <LogOut className="w-5 h-5" />
-          </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="btn-icon nav-toggle-btn"

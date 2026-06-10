@@ -13,12 +13,11 @@ import {
   Trash2,
   ArrowLeftRight,
 } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
 import { api } from "../services/api";
 import "../styles/departments.css";
 
 const Departments = () => {
-  const { isAdmin } = useAuth();
+  const isAdmin = true;
   const [departments, setDepartments] = useState([]);
   const [students, setStudents] = useState([]);
   const [selectedDeptDetail, setSelectedDeptDetail] = useState(null);

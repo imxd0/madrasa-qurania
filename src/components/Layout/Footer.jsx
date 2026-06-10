@@ -31,10 +31,10 @@ const Footer = () => {
         <div className="footer-section">
           <h3>روابط سريعة</h3>
           <ul className="footer-links">
-            <li><Link to="/">الرئيسية</Link></li>
-            <li><Link to="/about">من نحن</Link></li>
-            <li><Link to="/departments">الأقسام والحلقات</Link></li>
-            <li><Link to="/schedule">أوقات الدراسة</Link></li>
+            <li><Link to="/">لوحة التحكم</Link></li>
+            <li><Link to="/site/about">من نحن</Link></li>
+            <li><Link to="/site/departments">الأقسام والحلقات</Link></li>
+            <li><Link to="/site/schedule">أوقات الدراسة</Link></li>
           </ul>
         </div>
 
