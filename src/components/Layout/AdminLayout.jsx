@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { BarChart3, FolderKanban, CalendarCheck, Globe, Info, Clock, Phone, Activity } from 'lucide-react';
+import { BarChart3, FolderKanban, CalendarCheck, Globe, Info, Clock, Activity } from 'lucide-react';
 import '../../styles/admin.css';
 
 const AdminLayout = () => {
@@ -15,7 +15,6 @@ const AdminLayout = () => {
     { name: 'الأقسام والحلقات', path: '/site/departments', icon: <FolderKanban className="w-5 h-5" /> },
     { name: 'أوقات الدراسة', path: '/site/schedule', icon: <Clock className="w-5 h-5" /> },
     { name: 'نشاطاتنا', path: '/site/activities', icon: <Activity className="w-5 h-5" /> },
-    { name: 'تواصل معنا', path: '/site/contact', icon: <Phone className="w-5 h-5" /> },
   ];
 
   return (

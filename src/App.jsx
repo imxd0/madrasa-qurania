@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Outlet } from 'react-router-dom';
 
 import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
 import OfflineIndicator from './components/OfflineIndicator';
 import { startAutoSync, fullSync } from './services/syncManager';
 
@@ -10,7 +9,6 @@ import About from './pages/About';
 import Departments from './pages/Departments';
 import Schedule from './pages/Schedule';
 import Activities from './pages/Activities';
-import Contact from './pages/Contact';
 import AdminLayout from './components/Layout/AdminLayout';
 import AdminHome from './pages/Dashboard/AdminHome';
 import ManageDepartments from './pages/Dashboard/ManageDepartments';
@@ -35,7 +33,6 @@ const PublicLayout = () => {
           <Outlet />
         </main>
       </div>
-      <Footer />
     </>
   );
 };
@@ -65,7 +62,6 @@ function App() {
           <Route path="/site/departments" element={<Departments />} />
           <Route path="/site/schedule" element={<Schedule />} />
           <Route path="/site/activities" element={<Activities />} />
-          <Route path="/site/contact" element={<Contact />} />
         </Route>
       </Routes>
     </BrowserRouter>
